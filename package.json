@@ -1,0 +1,23 @@
+{
+  "name": "nc-leaks",
+  "version": "1.0.0",
+  "description": "Detective, here are your tasks for the next two days:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michael-squires/nc-leaks.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michael-squires/nc-leaks/issues"
+  },
+  "homepage": "https://github.com/michael-squires/nc-leaks#readme",
+  "bin": {
+    "howdy": "./cli.js"
+  }
+}
