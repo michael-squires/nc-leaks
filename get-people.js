@@ -21,7 +21,7 @@ function getPeople() {
             const allPeople = parsedBody.people;
             const northcoders = allPeople.filter(({ job }) => job.workplace === 'northcoders');
             getInterests(northcoders);
-            fs.writeFile('northcoderPeople.txt', JSON.stringify(northcoders), (err) => {
+            fs.writeFile('northcoderPeople.json', JSON.stringify(northcoders), (err) => {
                 if (err) throw err;
                 console.log('The file has been saved!');
             });
@@ -38,7 +38,6 @@ function getInterests(northcoders) {
                 path: `/api/people/${northcoder.username}/interests`,
                 method: 'GET',
             }
-
             const request = https.request(options, (response) => {
                 let body = '';
                 response.on('data', (packet) => {
