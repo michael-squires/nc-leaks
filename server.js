@@ -8,41 +8,20 @@
 
 const http = require('http');
 fs = require('fs');
+const {sendNorthcoders} = require('./controllers')
+const {sendNorthcoder} = require('./controllers')
 
-
-const server = http.createServer(function (request, response) {
-    //console.log(request)
-    const { url, method } = request;
-    console.log('url', url)
+const server = http.createServer(function (req, res) {
+    const { url, method } = req;
+    console.log(url)
     if (url === '/api/northcoders') {
-        fs.readFile('northcoders.json', 'utf8', function (err, northcoders) {
-            if (err) console.log('cannot read file, err');
-            else {
-                response.setHeader('Content-Type', 'application/json');
-                response.write(northcoders);
-                response.end();
-            }
-        })
+        sendNorthcoders(req, res);
+    } else if (url === `/api/northcoders/sunneeeee`) {
+        // console.log(url)
+        sendNorthcoder(req, res);
     }
-    else if (url === `/api/northcoders/sunneeeee`) {
-        fs.readFile('northcoders.json', 'utf8', function (err, northcoders) {
-            if (err) console.log('cannot read file, err');
-            else {
-                northcoders = JSON.parse(northcoders);
-                const northcoder = northcoders.find(({ username }) => (username === 'sunneeeee'));
-                console.log('northcoder', northcoder);
-                response.setHeader('Content-Type', 'application/json');
-                response.write(JSON.stringify(northcoder));
-                response.end();
-            }
-        })
-    }
-
-
-
-    //response.write('hello')
-    //response.end()
 })
+
 
 server.listen(8080, function () {
     console.log("I'm listening!")
